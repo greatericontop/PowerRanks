@@ -125,12 +125,14 @@ public class TablistManager {
                                             .put("prefix", currentRank.getPrefix())
                                             .put("suffix", currentRank.getSuffix()).build(),
                                 '[', ']');
+                            m.getLogger().warning(formatPre);
                             String formatSuf = PowerRanks.getTablistConfigManager().getString("sorting.nametags.suffix", "");
                             formatSuf = PRUtil.powerFormatter(
                                         formatSuf, ImmutableMap.<String, String>builder()
                                             .put("prefix", currentRank.getPrefix())
                                             .put("suffix", currentRank.getSuffix()).build(),
                                 '[', ']');
+                            m.getLogger().warning(formatSuf);
                             team.setPrefix(formatPre);
                             team.setSuffix(formatSuf);
                         }
