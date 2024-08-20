@@ -40,7 +40,10 @@ public class TablistManager {
     private HashMap<String, TablistAnimation> tablistAnimations = new HashMap<String, TablistAnimation>();
     private int verboseLogInterval = 0;
 
-    public TablistManager() {
+    PowerRanks m;
+
+	public TablistManager(PowerRanks m) {
+		this.m = m;
     }
 
     public void start() {

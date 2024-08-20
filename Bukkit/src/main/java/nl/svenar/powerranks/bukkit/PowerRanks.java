@@ -217,7 +217,7 @@ public class PowerRanks extends JavaPlugin implements Listener {
 		this.bungeecordManager = new BungeecordManager(this);
 		this.bungeecordManager.start();
 
-		this.tablistManager = new TablistManager();
+		this.tablistManager = new TablistManager(this);
 		this.tablistManager.start();
 
 		this.setupCheckRankTagsTask();
