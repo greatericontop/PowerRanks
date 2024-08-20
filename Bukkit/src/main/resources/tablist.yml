@@ -2,6 +2,10 @@ sorting:
   enabled: true
   reverse: false
   update-interval: 5
+  nametags:
+    enabled: true
+    prefix: '[prefix]'
+    suffix: '[suffix]'
 header-footer:
   enabled: true
   update-interval: 1

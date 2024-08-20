@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.common.collect.ImmutableMap;
 import nl.svenar.powerranks.common.structure.PRPlayer;
 import nl.svenar.powerranks.common.structure.PRPlayerRank;
 import nl.svenar.powerranks.common.structure.PRRank;
@@ -108,10 +109,31 @@ public class TablistManager {
                         }
                         team.unregister();
                     }
+                    // Teams are created here
                     for (int i = 0; i < sortedRanks.size(); i++) {
-                        scoreboard.registerNewTeam(i + "-" + sortedRanks.get(i).getName());
+                        Team team = scoreboard.registerNewTeam(i + "-" + sortedRanks.get(i).getName());
                         PowerRanksVerbose.log("TablistSort",
                                 "Creating new scoreboard team: " + i + "-" + sortedRanks.get(i).getName());
+
+                        if (PowerRanks.getTablistConfigManager().getBool("sorting.nametags.enabled", true)) {
+                            PRRank currentRank = sortedRanks.get(i);
+                            m.getLogger().warning("about to do team shenanigans for nametags!"); // TODO: temp
+                            String formatPre = PowerRanks.getTablistConfigManager().getString("sorting.nametags.prefix", "")
+                                    + currentRank.getNamecolor();
+                            formatPre = PRUtil.powerFormatter(
+                                        formatPre, ImmutableMap.<String, String>builder()
+                                            .put("prefix", currentRank.getPrefix())
+                                            .put("suffix", currentRank.getSuffix()).build(),
+                                '[', ']');
+                            String formatSuf = PowerRanks.getTablistConfigManager().getString("sorting.nametags.suffix", "");
+                            formatSuf = PRUtil.powerFormatter(
+                                        formatSuf, ImmutableMap.<String, String>builder()
+                                            .put("prefix", currentRank.getPrefix())
+                                            .put("suffix", currentRank.getSuffix()).build(),
+                                '[', ']');
+                            team.setPrefix(formatPre);
+                            team.setSuffix(formatSuf);
+                        }
                     }
                 }
 

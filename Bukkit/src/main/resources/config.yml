@@ -23,10 +23,6 @@ chat:
 tablist_modification:
   enabled: true
   format: '&a[world]&r [usertag] [prefix] [player] [suffix]'
-builtin_nametags:
-  enabled: true
-  prefix: '[prefix]'
-  suffix: '[suffix]'
 nametagedit:
   prefix: '[usertag] [prefix]'
   suffix: '[suffix]'
